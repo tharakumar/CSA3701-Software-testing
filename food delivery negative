@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Login attempt
+        System.out.print("Username: ");
+        String user = sc.nextLine();
+        System.out.print("Password: ");
+        String pass = sc.nextLine();
+
+        if (!user.equals("user1") || !pass.equals("pass123")) {
+            System.out.println("Error: Invalid login credentials.");
+            return;
+        }
+
+        // Menu selection
+        System.out.print("Choose item (1-3): ");
+        int item = sc.nextInt();
+        if (item < 1 || item > 3) {
+            System.out.println("Error: Selected item not available.");
+            return;
+        }
+
+        // Payment check
+        System.out.print("Card number: ");
+        String card = sc.next();
+        if (card.length() != 16 || !card.matches("\\d+")) {
+            System.out.println("Error: Invalid card number.");
+        } else {
+            System.out.println("Payment successful. Order placed.");
+        }
+    }
+}
