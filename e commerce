@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String[] items = {"Phone", "Laptop", "Watch"};
+    double[] prices = {500, 1000, 200};
+
+    System.out.println("1.Phone 2.Laptop 3.Watch");
+    System.out.print("Choose item: ");
+    int ch = sc.nextInt();
+
+    System.out.println(items[ch - 1] + " added to cart. Price: $" + prices[ch - 1]);
+    System.out.print("Enter 16-digit card: ");
+    String card = sc.next();
+    System.out.print("Enter 3-digit CVV: ");
+    String cvv = sc.next();
+
+    if (card.length() == 16 && cvv.length() == 3)
+      System.out.println("Payment successful! Order confirmed.");
+    else
+      System.out.println("Payment failed.");
+  }
+}
