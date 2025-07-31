@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String user = "john123", pass = "bank@123";
+        double balance = 1000;
+
+        System.out.print("Enter username: ");
+        String u = sc.nextLine();
+        System.out.print("Enter password: ");
+        String p = sc.nextLine();
+
+        if (!u.equals(user) || !p.equals(pass)) {
+            System.out.println("Login failed.");
+            return;
+        }
+
+        System.out.println("Login successful.");
+        System.out.println("Balance: $" + balance);
+
+        System.out.print("Enter amount to transfer: ");
+        double amount = sc.nextDouble();
+
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Transfer successful. Remaining balance: $" + balance);
+        } else {
+            System.out.println("Transfer failed. Check amount.");
+        }
+    }
+}
