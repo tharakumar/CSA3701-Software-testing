@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Step 1: User Login
+        System.out.print("Enter username: ");
+        String user = sc.nextLine();
+        System.out.print("Enter password: ");
+        String pass = sc.nextLine();
+
+        if (!user.equals("user1") || !pass.equals("pass123")) {
+            System.out.println("Login failed.");
+            return;
+        }
+
+        System.out.println("Login successful. Welcome, " + user + "!");
+
+        // Step 2: Show Menu
+        String[] menu = {"1. Pizza - $10", "2. Burger - $5", "3. Fries - $3"};
+        System.out.println("\nMenu:");
+        for (String item : menu) System.out.println(item);
+
+        // Step 3: Select Item
+        System.out.print("Choose item (1-3): ");
+        int choice = sc.nextInt();
+        String item = (choice == 1) ? "Pizza" : (choice == 2) ? "Burger" : "Fries";
+        double price = (choice == 1) ? 10 : (choice == 2) ? 5 : 3;
+
+        // Step 4: Confirm Order
+        System.out.println(item + " added to cart. Proceeding to checkout...");
+        System.out.print("Enter 16-digit card number: ");
+        String card = sc.next();
+        System.out.print("Enter 3-digit CVV: ");
+        String cvv = sc.next();
+
+        if (card.length() == 16 && cvv.length() == 3) {
+            System.out.println("Payment successful. Order for " + item + " confirmed!");
+            System.out.println("Estimated delivery: 30 minutes.");
+        } else {
+            System.out.println("Payment failed. Invalid card details.");
+        }
+    }
+}
