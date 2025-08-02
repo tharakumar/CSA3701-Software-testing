@@ -1,0 +1,20 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SwiggyLogin {
+    public static void main(String[] args) throws Exception {
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.swiggy.com");
+
+        driver.findElement(By.xpath("//div[text()='Login']")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("mobile")).sendKeys("9876543210");
+        driver.findElement(By.xpath("//a[text()='CONTINUE']")).click();
+
+        // OTP must be entered manually
+        Thread.sleep(5000);
+        driver.quit();
+    }
+}
