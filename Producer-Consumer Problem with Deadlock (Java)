@@ -1,0 +1,35 @@
+class ProducerConsumerDeadlock {
+
+    private final Object lock1 = new Object();
+    private final Object lock2 = new Object();
+
+    public void produce() {
+        synchronized (lock1) {
+            System.out.println("Producer acquired lock1");
+            try { Thread.sleep(100); } catch (InterruptedException e) {}
+            synchronized (lock2) {
+                System.out.println("Producer acquired lock2");
+            }
+        }
+    }
+
+    public void consume() {
+        synchronized (lock2) {
+            System.out.println("Consumer acquired lock2");
+            try { Thread.sleep(100); } catch (InterruptedException e) {}
+            synchronized (lock1) {
+                System.out.println("Consumer acquired lock1");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        ProducerConsumerDeadlock pc = new ProducerConsumerDeadlock();
+
+        Thread producerThread = new Thread(() -> pc.produce());
+        Thread consumerThread = new Thread(() -> pc.consume());
+
+        producerThread.start();
+        consumerThread.start();
+    }
+}
