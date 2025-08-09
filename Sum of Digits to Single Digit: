@@ -1,0 +1,36 @@
+public class SumOfDigitsSingleDigit {
+
+    // Calculate sum of digits repeatedly until single digit
+    public static int reduceToSingleDigit(int num) {
+        while (num >= 10) {
+            int sum = 0;
+            while (num > 0) {
+                sum += num % 10;
+                num /= 10;
+            }
+            num = sum;
+        }
+        return num;
+    }
+
+    public static void main(String[] args) {
+        int number = 98765;
+        int result = reduceToSingleDigit(number);
+        System.out.println("Single digit sum: " + result);
+
+        // Infinite loop simulation (incorrect termination condition)
+        // Uncomment to see infinite loop (do NOT run in practice)
+        /*
+        int infiniteNum = 999999999;
+        while (infiniteNum != 0) {
+            int sum = 0;
+            while (infiniteNum > 0) {
+                sum += infiniteNum % 10;
+                infiniteNum /= 10;
+            }
+            // Missing update to infiniteNum causes infinite loop
+            // infiniteNum = sum;  // This line missing => infinite loop
+        }
+        */
+    }
+}
