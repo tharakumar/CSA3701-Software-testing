@@ -1,0 +1,46 @@
+public class QuickSort {
+
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            // Bad pivot choice: always pick first element (worst case for sorted input)
+            int pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    private static int partition(int[] arr, int low, int high) {
+        int pivot = arr[low]; // poor pivot choice
+        int left = low + 1;
+        int right = high;
+
+        while (true) {
+            while (left <= right && arr[left] <= pivot) left++;
+            while (left <= right && arr[right] > pivot) right--;
+
+            if (left > right) break;
+
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+        }
+
+        arr[low] = arr[right];
+        arr[right] = pivot;
+
+        return right;
+    }
+
+    public static void main(String[] args) {
+        int[] sortedArray = {1,2,3,4,5,6,7,8,9,10}; // worst case for pivot = first element
+
+        long start = System.nanoTime();
+        quickSort(sortedArray, 0, sortedArray.length - 1);
+        long end = System.nanoTime();
+
+        System.out.println("Sorted array:");
+        for (int num : sortedArray) System.out.print(num + " ");
+
+        System.out.println("\nExecution time: " + (end - start) + " ns");
+    }
+}
